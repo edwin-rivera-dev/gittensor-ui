@@ -78,18 +78,23 @@ const MinerPRsTable: React.FC<MinerPRsTableProps> = ({ githubId }) => {
   const [sortField, setSortField] = useState<PrSortField>('date');
   const [sortDir, setSortDir] = useState<SortDir>('desc');
 
-  const page = parseInt(searchParams.get('prPage') || '0', 10);
+  const page = parseInt(searchParams.get('prsPage') || '0', 10) || 0;
   const setPage = useCallback(
     (updater: number | ((prev: number) => number)) => {
-      const next = typeof updater === 'function' ? updater(page) : updater;
-      setSearchParams((prev) => {
-        const p = new URLSearchParams(prev);
-        if (next === 0) p.delete('prPage');
-        else p.set('prPage', String(next));
-        return p;
-      });
+      setSearchParams(
+        (prev) => {
+          const p = new URLSearchParams(prev);
+          const current = parseInt(p.get('prsPage') || '0', 10) || 0;
+          const next =
+            typeof updater === 'function' ? updater(current) : updater;
+          if (next <= 0) p.delete('prsPage');
+          else p.set('prsPage', String(next));
+          return p;
+        },
+        { replace: true },
+      );
     },
-    [page, setSearchParams],
+    [setSearchParams],
   );
 
   const handleSort = useCallback(
