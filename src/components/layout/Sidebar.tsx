@@ -230,6 +230,52 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
             >
               X
             </Typography>
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{
+                borderColor: 'border.medium',
+                mx: 0.5,
+                height: '12px',
+                alignSelf: 'center',
+              }}
+            />
+            <Typography
+              variant="caption"
+              onClick={() => handleNavigate('/about')}
+              sx={{
+                color: 'text.primary',
+                fontSize: '0.65rem',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                '&:hover': { textDecoration: 'underline' },
+              }}
+            >
+              About
+            </Typography>
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{
+                borderColor: 'border.medium',
+                mx: 0.5,
+                height: '12px',
+                alignSelf: 'center',
+              }}
+            />
+            <Typography
+              variant="caption"
+              onClick={() => handleNavigate('/faq')}
+              sx={{
+                color: 'text.primary',
+                fontSize: '0.65rem',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                '&:hover': { textDecoration: 'underline' },
+              }}
+            >
+              FAQ
+            </Typography>
           </Stack>
           <Typography
             variant="caption"
